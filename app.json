@@ -1,0 +1,30 @@
+{
+  "name": "Dead Man's Snitch - Hipchat",
+  "description": "Post Dead Man's Snitch alerts to Hipchat",
+  "repository": "https://github.com/deadmanssnitch/go-hipchat-example",
+  "env": {
+    "HIPCHAT_TOKEN": {
+      "description": "API Token used to authenticate to HipChat. https://hipchat.com/account/api",
+      "required": true
+    },
+    "HIPCHAT_ROOM": {
+      "description": "Room ID of the HipChat room to notify",
+      "required": true
+    },
+    "HIPCHAT_HOSTNAME": {
+      "description": "Hostname of the HipChat server",
+      "value": "api.hipchat.com",
+      "required": false
+    }
+  },
+  "keywords": [
+    "go",
+    "hipchat",
+    "cron",
+    "monitoring",
+    "dead man's snitch"
+  ],
+  "buildpacks": [{
+    "url": "heroku/go"
+  }]
+}

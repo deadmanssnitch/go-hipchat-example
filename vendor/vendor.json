@@ -1,0 +1,17 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "rBIFNgrk7+bvfStN4ULe9cBggPA=",
+			"path": "github.com/deadmanssnitch/go-dmswebhooks",
+			"revision": "0f5c4640003df07658ede27bc61597e8ba9b7b7d",
+			"revisionTime": "2016-12-24T23:44:38Z"
+		},
+		{
+			"path": "github.com/deadmanssnithc/go-dmswebhooks",
+			"revision": ""
+		}
+	],
+	"rootPath": "github.com/deadmanssnitch/go-hipchat-example"
+}
