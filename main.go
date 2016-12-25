@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"time"
 
 	"github.com/deadmanssnitch/go-dmswebhooks"
 	"github.com/goji/httpauth"
@@ -17,6 +18,8 @@ type Config struct {
 }
 
 func main() {
+	var err error
+
 	cfg := &Config{
 		Token:    os.Getenv("HIPCHAT_TOKEN"),
 		Room:     os.Getenv("HIPCHAT_ROOM"),
@@ -52,13 +55,22 @@ func main() {
 		handler = httpauth.SimpleBasicAuth(cfg.Password, "")(handler)
 	}
 
-	http.Handle("/", handler)
-
 	var port = "4000"
 	if envPort := os.Getenv("PORT"); envPort != "" {
 		port = envPort
 	}
 
 	log.Printf("Started Listening on tcp://0.0.0.0:%v\n", port)
-	http.ListenAndServe(":"+port, nil)
+
+	server := http.Server{
+		Addr:         ":" + port,
+		Handler:      handler,
+		ReadTimeout:  10 * time.Second,
+		WriteTimeout: 30 * time.Second,
+	}
+
+	err = server.ListenAndServe()
+	if err != nil {
+		log.Printf("HTTP Server Error: %q\n", err.Error())
+	}
 }
