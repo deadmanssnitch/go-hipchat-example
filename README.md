@@ -7,12 +7,12 @@ alerts to HipChat.
 
 ## Config
 
-### HIPCHAT_TOKEN
+### HIPCHAT_TOKEN (required)
 
 Create a new [User API Token](https://hipchat.com/account/api) with the
 "Send Notification" scope.
 
-### HIPCHAT_ROOM
+### HIPCHAT_ROOM (required)
 
 Grab the numeric ID of the room you want to post to from the room's URL. 
 
