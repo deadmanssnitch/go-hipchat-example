@@ -15,6 +15,10 @@
       "description": "Hostname of the HipChat server",
       "value": "api.hipchat.com",
       "required": false
+    },
+    "DMS_PASSWORD": {
+      "description": "Adds a required basic auth username (no password) to authenticate the caller",
+      "required": false
     }
   },
   "keywords": [

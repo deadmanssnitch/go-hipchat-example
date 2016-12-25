@@ -11,6 +11,12 @@
 		{
 			"path": "github.com/deadmanssnithc/go-dmswebhooks",
 			"revision": ""
+		},
+		{
+			"checksumSHA1": "A1XxNUYocrlHspw52ir/aXA+U0U=",
+			"path": "github.com/goji/httpauth",
+			"revision": "c1b2bcd8769bd15cc56751223fd4b9f45ca987ca",
+			"revisionTime": "2015-08-20T05:55:20Z"
 		}
 	],
 	"rootPath": "github.com/deadmanssnitch/go-hipchat-example"

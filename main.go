@@ -6,12 +6,14 @@ import (
 	"os"
 
 	"github.com/deadmanssnitch/go-dmswebhooks"
+	"github.com/goji/httpauth"
 )
 
 type Config struct {
 	Token    string
 	Room     string
 	Hostname string
+	Password string
 }
 
 func main() {
@@ -19,6 +21,7 @@ func main() {
 		Token:    os.Getenv("HIPCHAT_TOKEN"),
 		Room:     os.Getenv("HIPCHAT_ROOM"),
 		Hostname: os.Getenv("HIPCHAT_HOSTNAME"),
+		Password: os.Getenv("DMS_PASSWORD"),
 	}
 
 	// Default to HipChat cloud
@@ -37,13 +40,19 @@ func main() {
 		log.Fatalf("Missing HIPCHAT_ROOM. Set this to the Room ID to post to.")
 	}
 
-	http.Handle("/", dmswebhooks.NewHandler(
+	handler := dmswebhooks.NewHandler(
 		func(alert *dmswebhooks.Alert) error {
 			notice := newNotificiation(alert)
 
 			return notifyHipchat(cfg, notice)
 		},
-	))
+	)
+
+	if cfg.Password != "" {
+		handler = httpauth.SimpleBasicAuth(cfg.Password, "")(handler)
+	}
+
+	http.Handle("/", handler)
 
 	var port = "4000"
 	if envPort := os.Getenv("PORT"); envPort != "" {
